@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/topLayout"
     android:orientation="vertical"
@@ -8,12 +7,10 @@
     android:layout_height="match_parent"
     android:keepScreenOn="true">
 
-
   <com.selfieliveness.selfie_liveness.ui.CameraSourcePreview
       android:id="@+id/preview"
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      >
+      android:layout_height="match_parent">
 
     <com.selfieliveness.selfie_liveness.ui.GraphicOverlay
         android:id="@+id/faceOverlay"
@@ -21,15 +18,16 @@
         android:layout_height="match_parent"
         android:visibility="visible"/>
 
-  </com.selfieliveness.selfie_liveness.ui.CameraSourcePreview>>
+  </com.selfieliveness.selfie_liveness.ui.CameraSourcePreview>
 
   <ImageView
       android:id="@+id/imgOverlay"
       android:layout_width="255dp"
       android:layout_height="400dp"
       android:layout_centerInParent="true"
-      android:visibility="visible"
+      android:visibility="invisible"
       android:src="@drawable/rounded_border_white"/>
+
   <ImageView
       android:id="@+id/imgNew"
       android:layout_width="255dp"
@@ -37,36 +35,35 @@
       android:layout_centerInParent="true"
       android:visibility="invisible"
       android:src="@drawable/rounded_green"/>
-
+  
   <com.selfieliveness.selfie_liveness.TransparentCircle
+      android:id="@+id/tcFaceDetectionOverlay"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:layout_centerInParent="true"
-      android:visibility="invisible"
+      android:visibility="visible"
       android:src="@drawable/rounded_border_white"/>
 
-    <TextView
-        android:shadowColor="#000"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:fontFamily="@font/robotobold"
-        android:id="@+id/txtMsg"
-        android:layout_alignParentTop="true"
-        android:text="@string/selfie_txt"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textColor="#FFF"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-
-
+  <TextView
+      android:shadowColor="#000"
+      android:shadowDx="1"
+      android:shadowDy="1"
+      android:fontFamily="@font/robotobold"
+      android:id="@+id/txtMsg"
+      android:typeface="monospace"
+      android:layout_alignParentTop="true"
+      android:text="@string/selfie_txt"
+      android:textSize="16sp"
+      android:gravity="center"
+      android:layout_centerHorizontal="true"
+      android:layout_centerVertical="true"
+      android:textColor="#FFF"
+      android:layout_centerInParent="true"
+      android:layout_marginTop="50dp"
+      android:layout_marginLeft="30dp"
+      android:layout_marginRight="30dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
   <TextView
       android:shadowColor="#000"
       android:shadowDx="1"
@@ -81,7 +78,7 @@
       android:layout_centerVertical="true"
       android:textColor="@color/green"
       android:layout_centerInParent="true"
-      android:layout_marginTop="20dp"
+      android:layout_marginTop="10dp"
       android:layout_marginLeft="30dp"
       android:layout_marginRight="30dp"
       android:layout_width="match_parent"
@@ -95,5 +92,4 @@
       android:layout_alignParentRight="true"
       android:layout_alignParentTop="true"
       android:padding="18dp"/>
-
 </RelativeLayout>
