@@ -138,7 +138,7 @@ public final class FaceTrackerActivity extends AppCompatActivity {
         imgClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FaceTrackerActivity.this.finishAffinity();
+                FaceTrackerActivity.this.finish();
                 overridePendingTransition(0, R.anim.push_out_to_bottom);
             }
         });
@@ -393,8 +393,7 @@ public final class FaceTrackerActivity extends AppCompatActivity {
                     GoogleApiAvailability.getInstance().getErrorDialog(this, code, RC_HANDLE_GMS);
             dlg.show();
         }
-
-        if (mCameraSource != null) {
+       if (mCameraSource != null) {
             try {
                 //  Toast.makeText(this, "Camera Source not null", Toast.LENGTH_SHORT).show();
                 mPreview.start(mCameraSource, mGraphicOverlay);
@@ -406,12 +405,13 @@ public final class FaceTrackerActivity extends AppCompatActivity {
     }
 
     public void setImageViewPicture(Bitmap bmpPicture) {
+
         if (persistImage(bmpPicture) == null) return;
         File f1 = new File(persistImage(bmpPicture).getPath());
         Intent intent = new Intent();
         intent.putExtra("filePath",f1.toString());
         setResult(Activity.RESULT_OK,intent);
-        FaceTrackerActivity.this.finishAffinity();
+        FaceTrackerActivity.this.finish();
         FaceTrackerActivity.this.overridePendingTransition(0, R.anim.push_out_to_bottom);
        /* Intent in1 = new Intent(this, ActDisplayImage.class);
         in1.putExtra("image", f1.toString());

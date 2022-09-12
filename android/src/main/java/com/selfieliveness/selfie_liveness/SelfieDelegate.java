@@ -3,7 +3,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import io.flutter.embedding.android.FlutterActivity;
+import io.flutter.embedding.engine.plugins.activity.ActivityAware;
+import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.PluginRegistry;
@@ -11,7 +15,7 @@ import io.flutter.plugin.common.PluginRegistry;
  * Created by Jaimin Sarvaiya on 11-11-2019.
  * Copyright (c) 2019 MTPL. All rights reserved.
  */
-public class SelfieDelegate implements PluginRegistry.ActivityResultListener {
+public class SelfieDelegate  {
     Activity activity;
     private MethodChannel.Result pendingResult;
     private MethodCall methodCall;
@@ -48,7 +52,7 @@ public class SelfieDelegate implements PluginRegistry.ActivityResultListener {
         pendingResult = result;
         return true;
     }
-    @Override
+
     public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 2899) {
             if (resultCode == Activity.RESULT_OK) {
@@ -67,4 +71,5 @@ public class SelfieDelegate implements PluginRegistry.ActivityResultListener {
         pendingResult.success(imagePath);
         clearMethodCallAndResult();
     }
+
 }

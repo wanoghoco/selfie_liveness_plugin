@@ -1,7 +1,11 @@
 package com.selfieliveness.selfie_liveness;
 
-import androidx.annotation.NonNull;
+import android.content.Intent;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import io.flutter.Log;
 import io.flutter.embedding.android.FlutterActivity;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
@@ -13,7 +17,7 @@ import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry;
 
 /** SelfieLivenessPlugin */
-public class SelfieLivenessPlugin implements FlutterPlugin, ActivityAware, MethodCallHandler {
+public class SelfieLivenessPlugin implements FlutterPlugin, ActivityAware, MethodCallHandler,  PluginRegistry.ActivityResultListener  {
 
   ActivityPluginBinding binding;
   private SelfieDelegate delegate;
@@ -46,6 +50,7 @@ public class SelfieLivenessPlugin implements FlutterPlugin, ActivityAware, Metho
   @Override
   public void onAttachedToActivity(@NonNull ActivityPluginBinding binding) {
   this.binding=binding;
+    binding.addActivityResultListener(this);
   this.delegate= new SelfieDelegate(binding.getActivity());
   }
 
@@ -56,11 +61,28 @@ public class SelfieLivenessPlugin implements FlutterPlugin, ActivityAware, Metho
 
   @Override
   public void onReattachedToActivityForConfigChanges(@NonNull ActivityPluginBinding binding) {
-
+    this.binding=binding;
+    binding.addActivityResultListener(this);
+    System.out.println("hello");
   }
 
   @Override
   public void onDetachedFromActivity() {
 
   }
+
+
+  @Override
+  public boolean onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    delegate.onActivityResult(requestCode,resultCode,data);
+    return false;
+  }
+
+
+
+  //app functions and method
+
+
+
+
 }
